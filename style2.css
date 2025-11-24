@@ -1,0 +1,84 @@
+/* Medicine Search */
+.medicine-search {
+  text-align: center;
+  padding: 40px;
+}
+
+.search-box {
+  padding: 10px;
+  width: 250px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.search-btn {
+  padding: 10px 15px;
+  margin-left: 5px;
+  background: #0077cc;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.medicine-result {
+  margin-top: 30px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  display: inline-block;
+  text-align: left;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+/* Doctors Page */
+.doctors {
+  padding: 30px;
+  text-align: center;
+}
+
+.doctor-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.doctor-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  transition: transform 0.2s;
+}
+
+.doctor-card:hover {
+  transform: translateY(-5px);
+}
+
+.doctor-card h3 {
+  color: #0077cc;
+}
+
+.msg-btn, .video-btn {
+  background: #0077cc;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  margin: 5px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.video-btn {
+  background: #28a745;
+}
+
+.msg-btn:hover {
+  background: #005fa3;
+}
+
+.video-btn:hover {
+  background: #1e7c34;
+}

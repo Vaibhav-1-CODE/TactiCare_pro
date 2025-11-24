@@ -1,0 +1,202 @@
+/* Global Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f9f9f9;
+}
+
+/* Header */
+header {
+  background: #0077b6;
+  color: white;
+  padding: 15px 20px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+/* Navigation */
+nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+nav a {
+  color: white;
+  padding: 6px 12px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Section Titles */
+section h2 {
+  text-align: center;
+  margin: 20px 10px;
+  font-size: 24px;
+}
+
+/* Tools / Search */
+.tools {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 15px;
+  flex-wrap: wrap;
+}
+
+#searchBar {
+  padding: 10px;
+  width: 50%;
+  min-width: 180px;
+  border: 2px solid #0077b6;
+  border-radius: 8px;
+  outline: none;
+  font-size: 16px;
+}
+
+/* Buttons */
+button {
+  padding: 10px 20px;
+  background: #0077b6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 16px;
+}
+
+button:hover {
+  background: #023e8a;
+}
+
+/* Cards */
+.card {
+  background: white;
+  width: 80%;
+  max-width: 500px;
+  margin: 15px auto;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.card:hover {
+  background: #eaf6ff;
+}
+
+/* Card Icon */
+.icon {
+  font-size: 2rem;
+}
+
+/* Card Content */
+.content {
+  display: none;
+  margin-top: 10px;
+}
+
+.content.show {
+  display: block;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 15px 10px;
+  background: #0077b6;
+  color: white;
+  margin-top: 20px;
+}
+
+/* Responsive Media Queries */
+@media (max-width: 1024px) {
+  #searchBar {
+    width: 70%;
+  }
+
+  section h2 {
+    font-size: 22px;
+  }
+
+  button {
+    font-size: 15px;
+    padding: 8px 16px;
+  }
+
+  .icon {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  #searchBar {
+    width: 90%;
+  }
+
+  .tools {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    width: 95%;
+    padding: 12px;
+  }
+
+  section h2 {
+    font-size: 20px;
+  }
+
+  button {
+    width: 90%;
+    margin-top: 5px;
+    font-size: 14px;
+  }
+
+  .icon {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  section h2 {
+    font-size: 18px;
+  }
+
+  #searchBar {
+    width: 95%;
+    font-size: 14px;
+  }
+
+  button {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+
+  .card {
+    width: 98%;
+    padding: 10px;
+  }
+}
+
+
+

@@ -1,0 +1,198 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background: #f8faff;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #0077b6;
+  color: #fff;
+  padding: 12px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+header h1 {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+/* Hamburger Button */
+.menu-toggle {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Navbar */
+nav {
+  display: flex;
+  gap: 18px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+nav a:hover,
+nav a.active {
+  color: #ffdd00;
+}
+
+/* Hero */
+.hero {
+  text-align: center;
+  background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("https://source.unsplash.com/1600x500/?pharmacy,medicine") no-repeat center/cover;
+  color: white;
+  padding: 60px 20px;
+}
+
+.hero h2 {
+  font-size: 32px;
+}
+
+.hero p {
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+/* Search Bar */
+.search-section {
+  margin: 30px auto;
+  text-align: center;
+}
+
+.search-bar {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.search-bar input {
+  padding: 10px;
+  width: 60%;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.search-bar button {
+  padding: 10px 20px;
+  border: none;
+  background: #0077b6;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.search-bar button:hover {
+  background: #005f86;
+}
+
+/* Results */
+.results, .trending, .pharmacies {
+  padding: 20px;
+  max-width: 900px;
+  margin: auto;
+}
+
+.results table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.results th, .results td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.results th {
+  background: #0077b6;
+  color: white;
+}
+
+.results tr:hover {
+  background: #f1f9ff;
+}
+
+/* Trending */
+.trend-list {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.trend-list span {
+  background: #e3f2fd;
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+
+/* Footer */
+footer {
+  background: #0077b6;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  margin-top: 30px;
+}
+
+footer .socials {
+  margin-top: 8px;
+}
+
+footer .socials a {
+  margin: 0 8px;
+  font-size: 18px;
+  text-decoration: none;
+  color: #ffdd00;
+}
+
+/* -------------------- Responsive Navbar -------------------- */
+@media (max-width: 768px) {
+  nav {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background: #0077b6;
+    flex-direction: column;
+    width: 200px;
+    padding: 15px;
+  }
+
+  nav.active {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .search-bar {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .search-bar input {
+    width: 90%;
+  }
+}

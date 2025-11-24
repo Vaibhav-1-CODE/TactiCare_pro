@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medicine Reminders - TactiCare</title>
+  <link rel="stylesheet" href="rem.css">
+</head>
+<body>
+  <header>
+    <h1>💊 Medicine Reminder Portal</h1>
+    <button onclick="window.location.href='index.html'" class="back-btn">⬅ Back to Home</button>
+  </header>
+
+  <main>
+    <section id="reminderSection">
+      <h2>Set a Medicine Reminder</h2>
+      <input type="text" id="medName" placeholder="Enter Medicine Name">
+      <input type="time" id="medTime">
+      <button class="add-btn" onclick="addReminder()">Add Reminder</button>
+
+      <table id="reminderTable">
+        <tr>
+          <th>Medicine</th>
+          <th>Time</th>
+          <th>Action</th>
+        </tr>
+      </table>
+    </section>
+  </main>
+
+  <audio id="alarmSound" src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg"></audio>
+
+  <script>
+    let reminders = JSON.parse(localStorage.getItem("reminders")) || [];
+
+    function addReminder() {
+      let medName = document.getElementById("medName").value.trim();
+      let medTime = document.getElementById("medTime").value;
+
+      if (medName === "" || medTime === "") {
+        alert("Please enter both Medicine Name and Time!");
+        return;
+      }
+
+      let reminder = { name: medName, time: medTime };
+      reminders.push(reminder);
+      localStorage.setItem("reminders", JSON.stringify(reminders));
+
+      renderReminders();
+      scheduleNotification(medName, medTime);
+
+      document.getElementById("medName").value = "";
+      document.getElementById("medTime").value = "";
+    }
+
+    function renderReminders() {
+      let table = document.getElementById("reminderTable");
+      table.innerHTML = `
+        <tr>
+          <th>Medicine</th>
+          <th>Time</th>
+          <th>Action</th>
+        </tr>
+      `;
+
+      reminders.forEach((r, index) => {
+        let row = table.insertRow();
+        row.insertCell(0).innerText = r.name;
+        row.insertCell(1).innerText = r.time;
+        row.insertCell(2).innerHTML = `<button class="delete-btn" onclick="deleteReminder(${index})">Delete</button>`;
+      });
+    }
+
+    function deleteReminder(index) {
+      reminders.splice(index, 1);
+      localStorage.setItem("reminders", JSON.stringify(reminders));
+      renderReminders();
+    }
+
+    function scheduleNotification(medicine, time) {
+      let [hours, minutes] = time.split(":").map(Number);
+      let now = new Date();
+      let reminderTime = new Date();
+      reminderTime.setHours(hours, minutes, 0, 0);
+
+      if (reminderTime < now) {
+        reminderTime.setDate(reminderTime.getDate() + 1);
+      }
+
+      let timeout = reminderTime.getTime() - now.getTime();
+      setTimeout(() => {
+        showNotification(medicine);
+      }, timeout);
+    }
+
+    function showNotification(medicine) {
+      let sound = document.getElementById("alarmSound");
+      sound.play();
+
+      if (Notification.permission === "granted") {
+        new Notification("Medicine Reminder 💊", {
+          body: "It's time to take your medicine: " + medicine,
+          icon: "https://cdn-icons-png.flaticon.com/512/2966/2966327.png"
+        });
+      } else {
+        alert("It's time to take your medicine: " + medicine);
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      if (Notification.permission !== "granted") {
+        Notification.requestPermission();
+      }
+      renderReminders();
+      reminders.forEach(r => scheduleNotification(r.name, r.time));
+    });
+  </script>
+</body>
+</html>

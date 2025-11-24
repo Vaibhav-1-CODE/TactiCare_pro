@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>First Aid Information</title>
+  <link rel="stylesheet" href="f.css">
+  <script>
+    // Toggle collapse/expand for cards
+    function toggleCard(id) {
+      const content = document.getElementById(id);
+      content.classList.toggle("show");
+    }
+
+    // Search filter
+    function searchFirstAid() {
+      let input = document.getElementById("searchBar").value.toLowerCase();
+      let cards = document.getElementsByClassName("card");
+      
+      for (let card of cards) {
+        let title = card.getElementsByTagName("h3")[0].innerText.toLowerCase();
+        if (title.includes(input)) {
+          card.style.display = "block";
+        } else {
+          card.style.display = "none";
+        }
+      }
+    }
+
+    // Print manual
+    function printManual() {
+      window.print();
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <h1>First Aid Guides</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="medicine.html">Search Medicine</a>
+      <a href="firstaid.html">First Aid</a>
+      <a href="store.html">Medicine Store</a>
+      <a href="doctors.html">Doctors</a>
+    </nav>
+  </header>
+
+  <!-- Search and Print -->
+  <section class="tools">
+    <input type="text" id="searchBar" onkeyup="searchFirstAid()" placeholder="🔍 Search First Aid...">
+    <button onclick="printManual()">🖨️ Print / Save PDF</button>
+  </section>
+
+  <section>
+    <h2>Basic First Aid Tips</h2>
+
+    <!-- Snake Bite -->
+    <div class="card" onclick="toggleCard('snakeContent')">
+      <div class="icon">🐍</div>
+      <h3>Snake Bite</h3>
+      <div class="content" id="snakeContent">
+        <ul>
+          <li>Keep patient calm and still.</li>
+          <li>Do not cut or suck the wound.</li>
+          <li>Immobilize the bitten limb.</li>
+          <li>Tie a cloth above the bite (not too tight).</li>
+          <li>Do not give alcohol or caffeine.</li>
+          <li>Rush to hospital immediately.</li>
+        </ul>
+        <p><b>Medicine:</b> Paracetamol for pain (avoid aspirin). Antivenom only at hospital.</p>
+      </div>
+    </div>
+
+    <!-- Burns -->
+    <div class="card" onclick="toggleCard('burnsContent')">
+      <div class="icon">🔥</div>
+      <h3>Burns</h3>
+      <div class="content" id="burnsContent">
+        <ul>
+          <li>Cool burn with clean water (not ice).</li>
+          <li>Remove tight objects like rings.</li>
+          <li>Cover with clean cloth/gauze.</li>
+          <li>Do not apply butter, oil, or toothpaste.</li>
+          <li>Keep patient hydrated.</li>
+          <li>Seek medical help if severe.</li>
+        </ul>
+        <p><b>Medicine:</b> Apply burn ointment (Silver Sulfadiazine), paracetamol for pain.</p>
+      </div>
+    </div>
+
+    <!-- Heart Attack -->
+    <div class="card" onclick="toggleCard('heartContent')">
+      <div class="icon">❤️</div>
+      <h3>Heart Attack</h3>
+      <div class="content" id="heartContent">
+        <ul>
+          <li>Call emergency services immediately.</li>
+          <li>Keep patient calm and seated upright.</li>
+          <li>Loosen tight clothes.</li>
+          <li>Monitor pulse and breathing.</li>
+          <li>Perform CPR if unresponsive.</li>
+          <li>Rush to hospital urgently.</li>
+        </ul>
+        <p><b>Medicine:</b> Give aspirin (150–300 mg) to chew, if not allergic.</p>
+      </div>
+    </div>
+
+    <!-- CPR -->
+    <div class="card" onclick="toggleCard('cprContent')">
+      <div class="icon">🫀</div>
+      <h3>CPR (Cardiopulmonary Resuscitation)</h3>
+      <div class="content" id="cprContent">
+        <ul>
+          <li>Check responsiveness and breathing.</li>
+          <li>Call emergency services.</li>
+          <li>Place heel of your hand on chest center, interlock fingers.</li>
+          <li>Give 30 chest compressions (depth ~5 cm, rate 100–120/min).</li>
+          <li>Give 2 rescue breaths if trained.</li>
+          <li>Continue until help arrives or patient responds.</li>
+        </ul>
+        <p><b>Note:</b> Hands-only CPR (compressions only) is better than doing nothing.</p>
+      </div>
+    </div>
+
+    <!-- Choking -->
+    <div class="card" onclick="toggleCard('chokingContent')">
+      <div class="icon">🤐</div>
+      <h3>Choking</h3>
+      <div class="content" id="chokingContent">
+        <ul>
+          <li>Ask patient to cough strongly.</li>
+          <li>If unable to breathe, perform Heimlich maneuver (abdominal thrusts).</li>
+          <li>For infants: 5 back blows + 5 chest thrusts.</li>
+          <li>If patient becomes unconscious, start CPR.</li>
+        </ul>
+        <p><b>Note:</b> Do not attempt blind finger sweeps in the mouth.</p>
+      </div>
+    </div>
+
+    <!-- Fracture -->
+    <div class="card" onclick="toggleCard('fractureContent')">
+      <div class="icon">🦴</div>
+      <h3>Fracture</h3>
+      <div class="content" id="fractureContent">
+        <ul>
+          <li>Immobilize the injured part with splints.</li>
+          <li>Do not try to straighten the bone.</li>
+          <li>Apply ice packs to reduce swelling.</li>
+          <li>Control bleeding with clean cloth if open fracture.</li>
+          <li>Take patient to hospital immediately.</li>
+        </ul>
+        <p><b>Medicine:</b> Paracetamol/Ibuprofen for pain relief (if not allergic).</p>
+      </div>
+    </div>
+
+    <!-- Nosebleed -->
+    <div class="card" onclick="toggleCard('nosebleedContent')">
+      <div class="icon">👃</div>
+      <h3>Nosebleed</h3>
+      <div class="content" id="nosebleedContent">
+        <ul>
+          <li>Sit patient upright and lean slightly forward.</li>
+          <li>Pinch soft part of nose for 10–15 minutes.</li>
+          <li>Apply cold compress on nose/forehead.</li>
+          <li>Do not tilt head backward (causes blood swallowing).</li>
+          <li>Seek medical care if bleeding lasts >20 minutes.</li>
+        </ul>
+      </div>
+    </div>
+
+    <hr style="margin:30px 0; border:1px solid #ccc;">
+<h2 style="text-align:center; font-size:28px; color:#2c3e50; margin-bottom:20px;">
+  🏠 HOME REMEDIES
+</h2>
+
+   
+
+
+
+
+
+
+      <!-- Fever -->
+
+<div class="card" onclick="toggleCard('feverContent')">
+  <div class="icon">🌡️</div>
+  <h3>Fever</h3>
+  <div class="content" id="feverContent">
+    <ul>
+      <li>Drink plenty of fluids (water, coconut water, soups).</li>
+      <li>Apply a cool damp cloth on forehead, armpits, or neck.</li>
+      <li>Wear light cotton clothes; avoid blankets unless very cold.</li>
+      <li>Take <b>Paracetamol</b> (Crocin/Dolo 650) if no allergy, as per dosage.</li>
+    </ul>
+    <p><b>Note:</b> See a doctor if fever is above 102°F or lasts >2–3 days.</p>
+  </div>
+</div>
+
+<!-- Cough & Cold -->
+<div class="card" onclick="toggleCard('coughContent')">
+  <div class="icon">🤧</div>
+  <h3>Cough & Cold</h3>
+  <div class="content" id="coughContent">
+    <ul>
+      <li>Drink warm fluids (ginger tea, honey water, turmeric milk).</li>
+      <li>Steam inhalation with salt/eucalyptus oil clears mucus.</li>
+      <li>Gargle with warm salt water 2–3 times/day.</li>
+      <li>Keep head elevated while sleeping.</li>
+      <li><b>Cough syrup</b>: Benadryl/Ascoril (wet cough), Dextromethorphan (dry cough).</li>
+    </ul>
+  </div>
+</div>
+
+
+ <!-- Poisoning -->
+<div class="card" onclick="toggleCard('poisonContent')">
+  <div class="icon">☠️</div>
+  <h3>Poisoning</h3>
+  <div class="content" id="poisonContent">
+    <ul>
+      <li>Identify the poison (medicine, chemical, food, gas).</li>
+      <li>Call emergency services immediately.</li>
+      <li>Do not induce vomiting unless advised by a doctor.</li>
+      <li>Keep patient’s airway clear, check breathing.</li>
+      <li>Give activated charcoal only if instructed by medical personnel.</li>
+    </ul>
+    <p><b>Basic medicine:</b> There are usually <u>no safe medicines</u> for poisoning at home — wait for doctor’s advice. Activated charcoal may be used <i>only</i> if prescribed.</p>
+    <p><b>Note:</b> Always carry the poison container/label to the hospital.</p>
+  </div>
+</div>
+
+
+<!-- Nosebleed -->
+<div class="card" onclick="toggleCard('noseContent')">
+  <div class="icon">👃</div>
+  <h3>Nosebleed</h3>
+  <div class="content" id="noseContent">
+    <ul>
+      <li>Sit upright and lean slightly forward.</li>
+      <li>Pinch the soft part of nose for 10 minutes.</li>
+      <li>Apply a cold compress on nose/cheeks.</li>
+      <li>Avoid blowing nose or tilting head back.</li>
+      <li><b>No medicine</b> needed; Oxymetazoline spray only if doctor advises.</li>
+    </ul>
+    <p><b>Note:</b> Seek help if bleeding doesn’t stop after 20 minutes.</p>
+  </div>
+</div>
+
+<!-- Minor Cuts -->
+<div class="card" onclick="toggleCard('cutsContent')">
+  <div class="icon">🤕</div>
+  <h3>Minor Cuts & Scratches</h3>
+  <div class="content" id="cutsContent">
+    <ul>
+      <li>Wash with clean water and mild soap.</li>
+      <li>Apply antiseptic (Dettol/Savlon).</li>
+      <li>Cover with a clean bandage if needed.</li>
+      <li>Change bandage daily, keep dry.</li>
+      <li>Apply <b>Antibiotic cream</b> (Soframycin/Neosporin).</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Minor Burns -->
+<div class="card" onclick="toggleCard('burnContent')">
+  <div class="icon">🔥</div>
+  <h3>Minor Burns</h3>
+  <div class="content" id="burnContent">
+    <ul>
+      <li>Run under cool water 10–15 minutes.</li>
+      <li>Do not apply toothpaste or oil.</li>
+      <li>Apply aloe vera gel for soothing.</li>
+      <li>Use <b>Burn cream</b> (Silver sulfadiazine / Burnol).</li>
+    </ul>
+    <p><b>Note:</b> See doctor if burn is deep, large, or on face.</p>
+  </div>
+</div>
+
+<!-- Indigestion -->
+<div class="card" onclick="toggleCard('indigestionContent')">
+  <div class="icon">💨</div>
+  <h3>Indigestion / Acidity</h3>
+  <div class="content" id="indigestionContent">
+    <ul>
+      <li>Drink cumin (jeera) water or ginger tea.</li>
+      <li>Avoid spicy/oily food.</li>
+      <li>Sit upright after meals.</li>
+      <li>Take <b>Antacid</b> (Eno, Gelusil, Digene).</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Sore Throat -->
+<div class="card" onclick="toggleCard('throatContent')">
+  <div class="icon">🤒</div>
+  <h3>Sore Throat</h3>
+  <div class="content" id="throatContent">
+    <ul>
+      <li>Drink honey + warm water + lemon.</li>
+      <li>Gargle with warm salt water.</li>
+      <li>Take warm soups & herbal teas.</li>
+      <li>Use <b>Lozenges</b> (Strepsils/Vicks).</li>
+      <li>Paracetamol if painful.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Headache -->
+<div class="card" onclick="toggleCard('headacheContent')">
+  <div class="icon">😵</div>
+  <h3>Headache</h3>
+  <div class="content" id="headacheContent">
+    <ul>
+      <li>Drink water (avoid dehydration).</li>
+      <li>Apply cold cloth on forehead/temples.</li>
+      <li>Rest in dark, quiet room.</li>
+      <li><b>Paracetamol</b> or <b>Ibuprofen</b> (Brufen) if no allergy.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Insect Bite -->
+<div class="card" onclick="toggleCard('insectContent')">
+  <div class="icon">🐝</div>
+  <h3>Insect Bite / Sting</h3>
+  <div class="content" id="insectContent">
+    <ul>
+      <li>Wash with soap & water.</li>
+      <li>Apply cold pack to reduce swelling.</li>
+      <li>Baking soda paste or aloe vera for relief.</li>
+      <li>Take <b>Antihistamine</b> (Cetirizine/Allegra) if itching/swelling.</li>
+    </ul>
+    <p><b>Note:</b> Seek urgent help if severe allergy or breathing difficulty.</p>
+  </div>
+</div>
+
+<!-- Diarrhea -->
+<div class="card" onclick="toggleCard('diarrheaContent')">
+  <div class="icon">🌀</div>
+  <h3>Diarrhea</h3>
+  <div class="content" id="diarrheaContent">
+    <ul>
+      <li>Drink ORS / homemade solution (1 tsp salt + 6 tsp sugar in 1L water).</li>
+      <li>Eat light food (rice, banana, toast).</li>
+      <li>Avoid spicy & oily food.</li>
+      <li><b>ORS</b>, <b>Zinc (kids)</b>, <b>Loperamide (adults severe only)</b>.</li>
+    </ul>
+    <p><b>Note:</b> Visit doctor if severe, bloody, or >2 days.</p>
+  </div>
+</div>
+
+<!-- First Aid Kit -->
+<div class="card" onclick="toggleCard('kitContent')">
+  <div class="icon">📦</div>
+  <h3>First Aid Kit Essentials</h3>
+  <div class="content" id="kitContent">
+    <ul>
+      <li>Thermometer (digital/mercury).</li>
+      <li>Paracetamol tablets.</li>
+      <li>ORS packets.</li>
+      <li>Antiseptic solution (Dettol/Savlon).</li>
+      <li>Antibiotic cream (Soframycin/Neosporin).</li>
+      <li>Burn cream (Burnol/Silver sulfadiazine).</li>
+      <li>Antacid tablets/sachets.</li>
+      <li>Cough syrup + Lozenges.</li>
+      <li>Antihistamine (Cetirizine/Allegra).</li>
+      <li>Sterile cotton, gauze pads, bandages.</li>
+      <li>Crepe bandage, medical tape.</li>
+      <li>Scissors, tweezers.</li>
+      <li>Disposable gloves, mask.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Emergency Contacts -->
+<div class="card" onclick="toggleCard('emergencyContent')">
+  <div class="icon">📞</div>
+  <h3>Emergency Contacts</h3>
+  <div class="content" id="emergencyContent">
+    <ul>
+      <li><b>Ambulance:</b> 108</li>
+      <li><b>Police:</b> 100</li>
+      <li><b>Fire:</b> 101</li>
+      <li><b>Women’s Helpline:</b> 1091</li>
+      <li><b>Local Doctor/Hospital:</b> (add contact)</li>
+      <li><b>Family Emergency Contact:</b> (add number)</li>
+    </ul>
+    <p><b>Note:</b> Keep a printed copy inside your first aid kit.</p>
+  </div>
+</div>
+
+    </div>
+
+  </section>
+
+
+  <script>
+  // Toggle collapse/expand
+  function toggleCard(id) {
+    const content = document.getElementById(id);
+    content.classList.toggle("show");
+  }
+
+  // Search filter (title + content inside each card)
+  function searchFirstAid() {
+    let input = document.getElementById("searchBar").value.toLowerCase();
+    let cards = document.getElementsByClassName("card");
+    
+    for (let card of cards) {
+      // ✅ This takes ALL visible text in the card (title + list + notes)
+      let text = card.innerText.toLowerCase();
+      
+      if (text.includes(input)) {
+        card.style.display = "block";  // show if match
+      } else {
+        card.style.display = "none";   // hide if no match
+      }
+    }
+  }
+
+  // Print manual
+  function printManual() {
+    window.print();
+  }
+</script>
+
+
+  <footer>
+    <p>© TactiCare 2025</p>
+  </footer>
+</body>
+</html>

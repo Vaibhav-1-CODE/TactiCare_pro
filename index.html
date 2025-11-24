@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TactiCare</title>
+  <script>
+if(!localStorage.getItem("tacticareUser")){
+  window.location.href = "auth.html";
+}
+</script>
+
+
+<script>
+function logout(){
+  localStorage.removeItem("tacticareUser");
+  window.location.href = "auth.html";
+}
+</script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>💊 TactiCare</h1>
+    <nav class="navbar-links">
+      <a href="index.html">Home</a>
+      <a href="medicine.html">Search Medicine</a>
+      <a href="firstaid.html">First Aid</a>
+      <a href="store.html">Medicine Store</a>
+      <a href="doctors.html">Doctors</a>
+    </nav>
+
+    <!-- Right buttons -->
+    <div>
+      <button id="darkModeToggle">🌙</button>
+      <button id="logoutBtn" onclick="logout()">Logout</button>
+    </div>
+  </header>
+<script>
+    function logout() {
+      localStorage.removeItem("tacticareUser");
+      window.location.href = "auth.html";
+    </script>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h2>Your Smart Health Companion</h2>
+    <p>Medicine Reminders • First Aid • Doctors • Health Tips</p>
+    <button onclick="document.querySelector('.features').scrollIntoView({behavior:'smooth'})">Get Started</button>
+  </section>
+
+  <!-- Features -->
+  <section class="features">
+    <h2>Why Choose TactiCare?</h2>
+    <div class="feature-cards">
+      <div class="card">
+        <h3>💊 Medicine Reminders</h3>
+        <p>Never miss a dose with our smart notification system.</p>
+        <!-- 🔹 SET MED Button -->
+        <a href="reminder.html" class="set-med-btn">SET MED</a>
+      </div>
+      <div class="card">
+        <h3>🩺 Find Doctors</h3>
+        <p>Search and connect with trusted healthcare professionals.</p>
+        <a href="doctors.html" class="set-med-btn">DOCTORS</a>
+      </div>
+      <div class="card">
+        <h3>🏥 First Aid Guide</h3>
+        <p>Instant help for emergencies like burns, cuts, or CPR.</p>
+        <a href="firstaid.html" class="set-med-btn">FIRST AID</a>
+      </div>
+      <div class="card">
+        <h3>🛒 Medicine Store</h3>
+        <p>Locate nearby pharmacies and order medicines easily.</p>
+        <a href="store.html" class="set-med-btn">STORE</a>
+
+      </div>
+    </div>
+  </section>
+
+ 
+  <style>
+    /* Floating Widget */
+    .health-tip-widget {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      max-width: 280px;
+      background: #f0f9ff;
+      border-left: 6px solid #0ea5e9;
+      padding: 15px 18px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      z-index: 9999;
+      animation: fadeInWidget 0.8s ease-in-out;
+    }
+
+    /* Close button */
+    .close-btn {
+      position: absolute;
+      top: 6px;
+      right: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      color: #64748b;
+      transition: 0.3s;
+    }
+
+    .close-btn:hover {
+      color: #ef4444;
+      transform: scale(1.1);
+    }
+
+    /* Heading */
+    .health-tip-widget h4 {
+      margin: 0 0 8px;
+      font-size: 1.1rem;
+      color: #0369a1;
+    }
+
+    /* Tip text */
+    .health-tip-widget p {
+      font-size: 0.95rem;
+      color: #0f172a;
+      line-height: 1.5;
+      margin-bottom: 10px;
+      opacity: 0;
+      animation: fadeIn 1s forwards;
+    }
+
+    /* Button */
+    .health-tip-widget button {
+      padding: 6px 14px;
+      background: #0ea5e9;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: 0.3s ease-in-out;
+    }
+
+    .health-tip-widget button:hover {
+      background: #0284c7;
+      transform: scale(1.05);
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInWidget {
+      from { opacity: 0; transform: translateX(-20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Health Tip Widget -->
+  <div class="health-tip-widget" id="healthTipWidget">
+    <span class="close-btn" onclick="document.getElementById('healthTipWidget').style.display='none'">❌</span>
+    <h4>💡 Health Tip</h4>
+    <p id="healthTip"></p>
+    <button onclick="newTip()">Next Tip</button>
+  </div>
+
+  <script>
+    const tips = [
+      "Drink at least 8 glasses of water daily to stay hydrated.",
+      "Take a 10-minute walk after meals to improve digestion.",
+      "Get 7-8 hours of sleep every night for better health.",
+      "Eat fresh fruits daily to boost your immunity.",
+      "Limit screen time before bed for quality sleep.",
+      "Wash your hands regularly to prevent infections.",
+      "Practice deep breathing for stress relief.",
+      "Include green leafy vegetables in your diet.",
+      "Avoid skipping breakfast – it fuels your body.",
+      "Do 15 minutes of stretching every morning.",
+      "Cut down on sugary drinks – prefer fresh juices.",
+      "Maintain good posture to protect your spine.",
+      "Eat smaller meals more frequently for better metabolism.",
+      "Take the stairs instead of the elevator for daily exercise.",
+      "Keep a small first-aid kit handy at home and in your vehicle.",
+      "Reduce salt intake to maintain healthy blood pressure.",
+      "Wear sunscreen to protect your skin from UV damage.",
+      "Don’t ignore minor injuries – clean and cover them immediately.",
+      "Chew food slowly to improve digestion.",
+      "Limit junk food; choose home-cooked meals instead."
+    ];
+
+    let tipIndex = 0;
+    const tipElement = document.getElementById("healthTip");
+
+    function newTip() {
+      tipElement.textContent = tips[tipIndex];
+      tipIndex = (tipIndex + 1) % tips.length;
+    }
+
+    // Show first tip & auto rotate every 10 seconds
+    window.onload = function() {
+      newTip();
+      setInterval(newTip, 10000);
+    }
+  </script>
+
+
+
+
+
+
+
+  <!-- Emergency Button -->
+  <div class="emergency-btn" onclick="alert('🚑 Ambulance: 108\n👮 Police: 100\n🔥 Fire: 101')">🚨</div>
+
+ 
+
+
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-container">
+    <!-- About -->
+    <div class="footer-section about">
+      <h3>💊 TactiCare</h3>
+      <p>Your smart health companion. Helping you stay healthy with medicine reminders, first aid tips, and doctor connections.</p>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="footer-section links">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="medicine.html">Search Medicine</a></li>
+        <li><a href="firstaid.html">First Aid</a></li>
+        <li><a href="store.html">Medicine Store</a></li>
+        <li><a href="doctors.html">Doctors</a></li>
+      </ul>
+    </div>
+
+    <!-- Contact -->
+    <div class="footer-section contact">
+      <h3>Contact Us</h3>
+      <p>📧 Email: <a href="mailto:tacticare@example.com">tacticare@example.com</a></p>
+      <p>📞 Phone: <a href="tel:+911234567890">+91 12345 67890</a></p>
+      <p>📍 Address: Modern College, Pune-5, India</p>
+    </div>
+
+    <!-- Social & Newsletter -->
+    <div class="footer-section newsletter">
+  <h3>Stay Connected</h3>
+  <div class="social-icons">
+    <!-- Facebook -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <a href="https://facebook.com" target="_blank" title="Facebook">
+      <i class="fab fa-facebook-f"></i>
+    </a>
+    <!-- Instagram -->
+    <a href="https://instagram.com" target="_blank" title="Instagram">
+      <i class="fab fa-instagram"></i>
+    </a>
+    <!-- YouTube -->
+    <a href="https://youtube.com" target="_blank" title="YouTube">
+      <i class="fab fa-youtube"></i>
+    </a>
+  </div>
+</div>
+
+
+      
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2025 TactiCare | All Rights Reserved</p>
+  </div>
+</footer>
+
+
+
+
+
+
+
+  <!-- JavaScript for Dark Mode -->
+  <script>
+    const toggleBtn = document.getElementById("darkModeToggle");
+    const body = document.body;
+
+    toggleBtn.addEventListener("click", () => {
+      body.classList.toggle("dark-mode");
+      toggleBtn.textContent = body.classList.contains("dark-mode") ? "☀️" : "🌙";
+    });
+  </script>
+</body>
+</html>

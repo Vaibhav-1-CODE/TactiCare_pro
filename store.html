@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Medicine Store</title>
+  <link rel="stylesheet" href="store.css">
+  <style>
+    /* Quick styling for search + filters */
+    .filters {
+      margin: 20px;
+      text-align: center;
+    }
+    .filters input, .filters select {
+      padding: 8px;
+      margin: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Medicine Store</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="medicine.html">Search Medicine</a>
+      <a href="firstaid.html">First Aid</a>
+      <a href="store.html" class="active">Medicine Store</a>
+      <a href="doctors.html">Doctors</a>
+      
+    </nav>
+  </header>
+
+  <!-- Search + Filters -->
+  <section class="filters">
+    <input type="text" id="searchBar" placeholder="🔍 Search medicine by name...">
+    <select id="priceFilter">
+      <option value="all">All Prices</option>
+      <option value="below50">Below ₹50</option>
+      <option value="50to100">₹50 – ₹100</option>
+      <option value="above100">Above ₹100</option>
+    </select>
+    <select id="stockFilter">
+      <option value="all">All</option>
+      <option value="in">In Stock</option>
+      <option value="out">Out of Stock</option>
+    </select>
+  </section>
+
+  <section class="store">
+    <h2>Available Medicines</h2>
+    <div class="store-grid">
+      
+      <!-- Example Medicine Card -->
+      <div class="medicine-card" data-name="Paracetamol" data-price="30" data-stock="in">
+        <img src="images/paracetamol.jpg" alt="Paracetamol">
+        <h3>Paracetamol</h3>
+        <p>Used for fever and mild pain relief.</p>
+        <p><b>Price:</b> ₹30</p>
+        <p><b>Status:</b> In Stock</p>
+        <button class="order-btn" onclick="openOrderForm('Paracetamol')">Place Order</button>
+        <button class="doctor-btn">Prefer to Doctor</button>
+      </div>
+
+      <div class="medicine-card" data-name="Aspirin" data-price="60" data-stock="out">
+        <img src="images/aspirin.jpg" alt="Aspirin">
+        <h3>Aspirin</h3>
+        <p>Helps reduce pain, fever, and inflammation.</p>
+        <p><b>Price:</b> ₹60</p>
+        <p><b>Status:</b> Out of Stock</p>
+        <button class="order-btn" onclick="openOrderForm('Aspirin')">Place Order</button>
+        <button class="doctor-btn">Prefer to Doctor</button>
+      </div>
+
+      <div class="medicine-card" data-name="Amoxicillin" data-price="120" data-stock="in">
+        <img src="images/amoxicillin.jpg" alt="Amoxicillin">
+        <h3>Amoxicillin</h3>
+        <p>Antibiotic used to treat bacterial infections.</p>
+        <p><b>Price:</b> ₹120</p>
+        <p><b>Status:</b> In Stock</p>
+        <button class="order-btn" onclick="openOrderForm('Amoxicillin')">Place Order</button>
+        <button class="doctor-btn">Prefer to Doctor</button>
+      </div>
+
+      <div class="medicine-card" data-name="Cough Syrup" data-price="90" data-stock="in">
+        <img src="images/coughsyrup.jpg" alt="Cough Syrup">
+        <h3>Cough Syrup</h3>
+        <p>Relieves cough and throat irritation.</p>
+        <p><b>Price:</b> ₹90</p>
+        <p><b>Status:</b> In Stock</p>
+        <button class="order-btn" onclick="openOrderForm('Cough Syrup')">Place Order</button>
+        <button class="doctor-btn">Prefer to Doctor</button>
+      </div>
+
+
+
+
+
+            <!-- ✅ Common Medicines -->
+      <div class="medicine-card" data-name="Ibuprofen" data-price="40" data-stock="in">
+        <img src="images/ibuprofen.jpg" alt="Ibuprofen">
+        <h3>Ibuprofen</h3>
+        <p>Pain reliever and anti-inflammatory.</p>
+        <p><b>Price:</b> ₹40</p>
+        <p><b>Status:</b> In Stock</p>
+        <button class="order-btn" onclick="openOrderForm('Ibuprofen')">Place Order</button>
+        <button class="doctor-btn">Prefer to Doctor</button>
+      </div>
+
+      <div class="medicine-card" data-name="Cetirizine" data-price="25" data-stock="in">
+        <img src="images/cetirizine.jpg" alt="Cetirizine">
+        <h3>Cetirizine</h3>
+        <p>Used for allergy and cold symptoms.</p>
+        <p><b>Price:</b> ₹25</p>
+        <p><b>Status:</b> In Stock</p>
+        <button class="order-btn" onclick="openOrderForm('Cetirizine')">Place Order</button>
+        <button class="doctor-btn">Prefer to Doctor</button>
+      </div>
+
+      <div class="medicine-card" data-name="Metformin" data-price="70" data-stock="in">
+        <img src="images/metformin.jpg" alt="Metformin">
+        <h3>Metformin</h3>
+        <p>Used to control blood sugar in diabetes.</p>
+        <p><b>Price:</b> ₹70</p>
+        <p><b>Status:</b> In Stock</p>
+        <button class="order-btn" onclick="openOrderForm('Metformin')">Place Order</button>
+        <button class="doctor-btn">Prefer to Doctor</button>
+      </div>
+
+      <div class="medicine-card" data-name="Omeprazole" data-price="80" data-stock="out">
+        <img src="images/omeprazole.jpg" alt="Omeprazole">
+        <h3>Omeprazole</h3>
+        <p>Reduces stomach acid, used for acidity and ulcers.</p>
+        <p><b>Price:</b> ₹80</p>
+        <p><b>Status:</b> Out of Stock</p>
+        <button class="order-btn" onclick="openOrderForm('Omeprazole')">Place Order</button>
+        <button class="doctor-btn">Prefer to Doctor</button>
+      </div>
+
+      <div class="medicine-card" data-name="Azithromycin" data-price="95" data-stock="in">
+        <img src="images/azithromycin.jpg" alt="Azithromycin">
+        <h3>Azithromycin</h3>
+        <p>Antibiotic for bacterial infections.</p>
+        <p><b>Price:</b> ₹95</p>
+        <p><b>Status:</b> In Stock</p>
+        <button class="order-btn" onclick="openOrderForm('Azithromycin')">Place Order</button>
+        <button class="doctor-btn">Prefer to Doctor</button>
+      </div>
+
+      <div class="medicine-card" data-name="Diclofenac" data-price="55" data-stock="in">
+        <img src="images/diclofenac.jpg" alt="Diclofenac">
+        <h3>Diclofenac</h3>
+        <p>Pain relief for muscle and joint pain.</p>
+        <p><b>Price:</b> ₹55</p>
+        <p><b>Status:</b> In Stock</p>
+        <button class="order-btn" onclick="openOrderForm('Diclofenac')">Place Order</button>
+        <button class="doctor-btn">Prefer to Doctor</button>
+      </div>
+
+      <div class="medicine-card" data-name="Ranitidine" data-price="35" data-stock="out">
+        <img src="images/ranitidine.jpg" alt="Ranitidine">
+        <h3>Ranitidine</h3>
+        <p>Used for acidity and heartburn.</p>
+        <p><b>Price:</b> ₹35</p>
+        <p><b>Status:</b> Out of Stock</p>
+        <button class="order-btn" onclick="openOrderForm('Ranitidine')">Place Order</button>
+        <button class="doctor-btn">Prefer to Doctor</button>
+      </div>
+
+      <div class="medicine-card" data-name="Insulin" data-price="150" data-stock="in">
+        <img src="images/insulin.jpg" alt="Insulin">
+        <h3>Insulin</h3>
+        <p>Used to control blood sugar in diabetes patients.</p>
+        <p><b>Price:</b> ₹150</p>
+        <p><b>Status:</b> In Stock</p>
+        <button class="order-btn" onclick="openOrderForm('Insulin')">Place Order</button>
+        <button class="doctor-btn">Prefer to Doctor</button>
+      </div>
+
+      <div class="medicine-card" data-name="Multivitamins" data-price="60" data-stock="in">
+        <img src="images/multivitamins.jpg" alt="Multivitamins">
+        <h3>Multivitamins</h3>
+        <p>Supplements for general health and energy.</p>
+        <p><b>Price:</b> ₹60</p>
+        <p><b>Status:</b> In Stock</p>
+        <button class="order-btn" onclick="openOrderForm('Multivitamins')">Place Order</button>
+        <button class="doctor-btn">Prefer to Doctor</button>
+      </div>
+
+      <div class="medicine-card" data-name="Vitamin C Tablets" data-price="45" data-stock="in">
+        <img src="images/vitaminc.jpg" alt="Vitamin C">
+        <h3>Vitamin C</h3>
+        <p>Boosts immunity and overall health.</p>
+        <p><b>Price:</b> ₹45</p>
+        <p><b>Status:</b> In Stock</p>
+        <button class="order-btn" onclick="openOrderForm('Vitamin C')">Place Order</button>
+        <button class="doctor-btn">Prefer to Doctor</button>
+      </div>
+
+      <div class="medicine-card" data-name="ORS Solution" data-price="20" data-stock="in">
+        <img src="images/ors.jpg" alt="ORS">
+        <h3>ORS Solution</h3>
+        <p>Used for dehydration and diarrhea treatment.</p>
+        <p><b>Price:</b> ₹20</p>
+        <p><b>Status:</b> In Stock</p>
+        <button class="order-btn" onclick="openOrderForm('ORS Solution')">Place Order</button>
+        <button class="doctor-btn">Prefer to Doctor</button>
+      </div>
+
+
+      <!-- ⭐ Rare / Special Medicines -->
+      <div class="medicine-card" data-name="Remdesivir" data-price="2500" data-stock="out">
+        <img src="images/remdesivir.jpg" alt="Remdesivir">
+        <h3>Remdesivir</h3>
+        <p>Antiviral drug used in severe viral infections.</p>
+        <p><b>Price:</b> ₹2500</p>
+        <p><b>Status:</b> Out of Stock</p>
+        <button class="order-btn" onclick="openOrderForm('Remdesivir')">Place Order</button>
+        <button class="doctor-btn">Prefer to Doctor</button>
+      </div>
+
+      <div class="medicine-card" data-name="Cancer Chemotherapy Pack" data-price="5000" data-stock="in">
+        <img src="images/chemotherapy.jpg" alt="Chemotherapy">
+        <h3>Cancer Chemotherapy Pack</h3>
+        <p>Specialized medicine for cancer treatment.</p>
+        <p><b>Price:</b> ₹5000</p>
+        <p><b>Status:</b> In Stock</p>
+        <button class="order-btn" onclick="openOrderForm('Cancer Chemotherapy Pack')">Place Order</button>
+        <button class="doctor-btn">Prefer to Doctor</button>
+      </div>
+
+      <div class="medicine-card" data-name="Erythropoietin Injection" data-price="1200" data-stock="in">
+        <img src="images/erythropoietin.jpg" alt="Erythropoietin">
+        <h3>Erythropoietin Injection</h3>
+        <p>Used for anemia and kidney-related diseases.</p>
+        <p><b>Price:</b> ₹1200</p>
+        <p><b>Status:</b> In Stock</p>
+        <button class="order-btn" onclick="openOrderForm('Erythropoietin Injection')">Place Order</button>
+        <button class="doctor-btn">Prefer to Doctor</button>
+      </div>
+
+      <div class="medicine-card" data-name="Hepatitis B Vaccine" data-price="850" data-stock="in">
+        <img src="images/hepb.jpg" alt="Hepatitis B Vaccine">
+        <h3>Hepatitis B Vaccine</h3>
+        <p>Vaccine to prevent Hepatitis B infection.</p>
+        <p><b>Price:</b> ₹850</p>
+        <p><b>Status:</b> In Stock</p>
+        <button class="order-btn" onclick="openOrderForm('Hepatitis B Vaccine')">Place Order</button>
+        <button class="doctor-btn">Prefer to Doctor</button>
+      </div>
+
+      <div class="medicine-card" data-name="Blood Plasma" data-price="3000" data-stock="out">
+        <img src="images/plasma.jpg" alt="Blood Plasma">
+        <h3>Blood Plasma</h3>
+        <p>Used in emergency critical care treatments.</p>
+        <p><b>Price:</b> ₹3000</p>
+        <p><b>Status:</b> Out of Stock</p>
+        <button class="order-btn" onclick="openOrderForm('Blood Plasma')">Place Order</button>
+        <button class="doctor-btn">Prefer to Doctor</button>
+      </div>
+
+      <div class="medicine-card" data-name="Organ Transplant Pack" data-price="10000" data-stock="in">
+        <img src="images/transplant.jpg" alt="Organ Transplant">
+        <h3>Organ Transplant Pack</h3>
+        <p>Specialized post-surgery transplant medicines.</p>
+        <p><b>Price:</b> ₹10,000</p>
+        <p><b>Status:</b> In Stock</p>
+        <button class="order-btn" onclick="openOrderForm('Organ Transplant Pack')">Place Order</button>
+        <button class="doctor-btn">Prefer to Doctor</button>
+      </div>
+
+
+    </div>
+  </section>
+
+  <!-- Order Popup Modal (same as before) -->
+  <div id="orderModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeOrderForm()">&times;</span>
+      <h2>Place Your Order</h2>
+      <form id="orderForm">
+        <label for="medicine">Medicine</label>
+        <input type="text" id="medicine" name="medicine" readonly>
+        <label for="quantity">Quantity</label>
+        <input type="number" id="quantity" name="quantity" min="1" required>
+        <label for="name">Your Name</label>
+        <input type="text" id="name" name="name" required>
+        <label for="address">Delivery Address</label>
+        <textarea id="address" name="address" required></textarea>
+        <label for="phone">Contact Number</label>
+        <input type="tel" id="phone" name="phone" required>
+        <button type="submit" class="submit-btn">Confirm Order</button>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <p>© TactiCare 2025</p>
+  </footer>
+
+  <script>
+    // Open modal
+    function openOrderForm(medicineName) {
+      document.getElementById("orderModal").style.display = "block";
+      document.getElementById("medicine").value = medicineName;
+    }
+
+    // Close modal
+    function closeOrderForm() {
+      document.getElementById("orderModal").style.display = "none";
+    }
+
+    // Close modal if clicked outside
+    window.onclick = function(event) {
+      const modal = document.getElementById("orderModal");
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+
+    // Dummy submit
+    document.getElementById("orderForm").onsubmit = function(e) {
+      e.preventDefault();
+      alert("✅ Your order has been placed successfully!");
+      closeOrderForm();
+    }
+
+    // Search + Filter Logic
+    const searchBar = document.getElementById("searchBar");
+    const priceFilter = document.getElementById("priceFilter");
+    const stockFilter = document.getElementById("stockFilter");
+    const cards = document.querySelectorAll(".medicine-card");
+
+    function filterMedicines() {
+      const searchText = searchBar.value.toLowerCase();
+      const priceVal = priceFilter.value;
+      const stockVal = stockFilter.value;
+
+      cards.forEach(card => {
+        const name = card.dataset.name.toLowerCase();
+        const price = parseInt(card.dataset.price);
+        const stock = card.dataset.stock;
+
+        let match = true;
+
+        // Search filter
+        if (!name.includes(searchText)) match = false;
+
+        // Price filter
+        if (priceVal === "below50" && price >= 50) match = false;
+        if (priceVal === "50to100" && (price < 50 || price > 100)) match = false;
+        if (priceVal === "above100" && price <= 100) match = false;
+
+        // Stock filter
+        if (stockVal === "in" && stock !== "in") match = false;
+        if (stockVal === "out" && stock !== "out") match = false;
+
+        card.style.display = match ? "block" : "none";
+      });
+    }
+
+    searchBar.addEventListener("input", filterMedicines);
+    priceFilter.addEventListener("change", filterMedicines);
+    stockFilter.addEventListener("change", filterMedicines);
+  </script>
+</body>
+</html>

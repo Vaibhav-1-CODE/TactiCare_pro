@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TactiCare Authentication</title>
+  <style>
+    /* Reset */
+    * {margin:0; padding:0; box-sizing:border-box; font-family:Arial, sans-serif;}
+
+    body {
+      min-height: 100vh;
+      background: url('lll.png') no-repeat center center/cover;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: #fff;
+    }
+
+    .overlay {
+      position:absolute; top:0; left:0;
+      width:100%; height:100%;
+      background:rgba(0,0,0,0.4);
+      backdrop-filter:blur(3px);
+      z-index:1;
+    }
+
+    header, footer {
+      position:relative;
+      z-index:2;
+      text-align:center;
+      padding:15px 10px;
+      font-weight:bold;
+      text-shadow:0 2px 5px rgba(0,0,0,0.6);
+      animation:glowText 2s infinite alternate;
+      border-radius:8px;
+      margin:10px auto;
+      width:fit-content;
+    }
+
+    header { font-size:1.5rem; background:rgba(0,0,0,0.3); }
+    footer { font-size:1rem; background:rgba(0,0,0,0.3); }
+
+    @keyframes glowText {
+      from { text-shadow:0 0 8px #ff9a3c, 0 0 16px #ff9a3c; }
+      to   { text-shadow:0 0 16px #00fff0, 0 0 24px #00fff0; }
+    }
+
+    .container {
+      position:relative; z-index:2;
+      flex:1;
+      display:flex; flex-direction:column;
+      align-items:center; justify-content:center;
+    }
+
+    .title {
+      font-size:3rem; font-weight:bold;
+      margin-bottom:20px; text-shadow:0 4px 10px rgba(0,0,0,0.6);
+      animation:glowText 2s infinite alternate;
+    }
+
+    /* Auth box */
+    .auth-box {
+      background:rgba(255,255,255,0.1);
+      backdrop-filter:blur(8px);
+      padding:25px; border-radius:12px;
+      box-shadow:0 4px 20px rgba(0,0,0,0.4);
+      width:330px; text-align:center;
+    }
+
+    .tabs {
+      display:flex; justify-content:space-between;
+      margin-bottom:15px;
+    }
+    .tabs button {
+      flex:1; margin:0 5px;
+      padding:10px; border:none; border-radius:6px;
+      font-size:16px; font-weight:bold;
+      cursor:pointer; transition:background 0.3s;
+    }
+    .tabs .active { background:#0077b6; color:white; }
+    .tabs button:hover { background:#005f8a; color:white; }
+
+    .form { display:none; }
+    .form.active { display:block; }
+
+    .form input {
+      width:90%; margin:8px 0; padding:10px;
+      border-radius:6px; border:none; outline:none;
+      font-size:15px;
+    }
+
+    /* Pill-shaped toggle buttons */
+    .toggle-group {
+      display:flex; justify-content:space-between; margin:10px 0;
+    }
+    .toggle-group input[type="radio"] { display:none; }
+    .toggle-group label {
+      flex:1;
+      margin:0 5px;
+      padding:10px 0;
+      border-radius:50px;
+      text-align:center;
+      font-weight:bold;
+      cursor:pointer;
+      background:rgba(255,255,255,0.2);
+      color:white;
+      transition: all 0.3s ease;
+    }
+    .toggle-group input[type="radio"]:checked + label {
+      background: #00b4d8;
+      color: #fff;
+      box-shadow: 0 0 10px #00fff0;
+      transform: scale(1.05);
+    }
+    .toggle-group label:hover {
+      background:rgba(255,255,255,0.3);
+    }
+
+    .captcha-box {
+      display:flex; justify-content:space-between; align-items:center;
+      margin:10px 0;
+      animation:glowCaptcha 2s infinite alternate;
+    }
+    .captcha-text {
+      background:#eee; padding:8px 15px; border-radius:6px;
+      font-weight:bold; letter-spacing:2px; color:#000;
+      animation:glowCaptcha 2s infinite alternate;
+    }
+    .reload { cursor:pointer; font-size:18px; margin-left:10px; display:inline-block; transition:transform 0.3s; }
+    .reload:hover { transform:rotate(360deg); }
+
+    .btn {
+      width:100%; padding:10px; margin-top:10px;
+      border:none; border-radius:6px;
+      font-size:16px; font-weight:bold;
+      cursor:pointer;
+      transition: box-shadow 0.3s, transform 0.2s;
+      position:relative;
+    }
+    .login-btn {background:#4caf50; color:white; animation:glowBtn 2s infinite alternate;}
+    .signup-btn {background:#0077b6; color:white; animation:glowBtn 2s infinite alternate;}
+    .btn:hover { transform:translateY(-2px); }
+
+    @keyframes glowBtn {
+      from { box-shadow: 0 0 10px #ff9a3c, 0 0 20px #00fff0; }
+      to   { box-shadow: 0 0 20px #00fff0, 0 0 30px #ff9a3c; }
+    }
+
+    @keyframes glowCaptcha {
+      from { box-shadow: 0 0 6px #ff9a3c, 0 0 12px #00fff0; }
+      to   { box-shadow: 0 0 12px #00fff0, 0 0 20px #ff9a3c; }
+    }
+
+    .error {color:#ff4444; font-size:14px; margin-top:8px;}
+
+    /* Responsive */
+    @media(max-width:480px){
+      header{font-size:1.2rem;}
+      .title{font-size:2.2rem;}
+      .auth-box{width:85%;}
+      footer{font-size:0.9rem;}
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay"></div>
+
+  <header>FIRST LINE OF HEALTH</header>
+
+  <div class="container">
+    <h1 class="title">TactiCare</h1>
+
+    <div class="auth-box">
+      <!-- Tabs -->
+      <div class="tabs">
+        <button id="loginTab" class="active" onclick="showForm('login')">Login</button>
+        <button id="signupTab" onclick="showForm('signup')">Sign Up</button>
+      </div>
+
+      <!-- Login Form -->
+      <form id="loginForm" class="form active">
+        <input type="text" id="loginUser" placeholder="Username">
+        <input type="password" id="loginPass" placeholder="Password">
+
+        <!-- Role Toggle -->
+        <div class="toggle-group">
+          <input type="radio" id="loginPatient" name="loginRole" value="Patient">
+          <label for="loginPatient">Patient</label>
+          <input type="radio" id="loginDoctor" name="loginRole" value="Doctor">
+          <label for="loginDoctor">Doctor</label>
+        </div>
+
+        <!-- Captcha -->
+        <div class="captcha-box">
+          <span id="loginCaptchaText" class="captcha-text"></span>
+          <span class="reload" onclick="generateCaptcha('login')">⟳</span>
+        </div>
+        <input type="text" id="loginCaptcha" placeholder="Enter Captcha">
+
+        <button type="submit" class="btn login-btn">Login</button>
+        <p id="loginError" class="error"></p>
+      </form>
+
+      <!-- Sign Up Form -->
+      <form id="signupForm" class="form">
+        <input type="text" id="fullname" placeholder="Full Name">
+        <input type="text" id="username" placeholder="Username">
+        <input type="email" id="email" placeholder="Email">
+        <input type="password" id="password" placeholder="Password">
+        <input type="password" id="confirm" placeholder="Confirm Password">
+
+        <!-- Role Toggle -->
+        <div class="toggle-group">
+          <input type="radio" id="patient" name="role" value="Patient">
+          <label for="patient">Patient</label>
+          <input type="radio" id="doctor" name="role" value="Doctor">
+          <label for="doctor">Doctor</label>
+        </div>
+
+        <!-- Captcha -->
+        <div class="captcha-box">
+          <span id="signupCaptchaText" class="captcha-text"></span>
+          <span class="reload" onclick="generateCaptcha('signup')">⟳</span>
+        </div>
+        <input type="text" id="signupCaptcha" placeholder="Enter Captcha">
+
+        <button type="submit" class="btn signup-btn">Sign Up</button>
+        <p id="signupError" class="error"></p>
+      </form>
+    </div>
+  </div>
+
+  <footer>For better health, stay connected with us</footer>
+
+  <script>
+    // Switch tabs
+    function showForm(type){
+      document.getElementById("loginForm").classList.remove("active");
+      document.getElementById("signupForm").classList.remove("active");
+      document.getElementById("loginTab").classList.remove("active");
+      document.getElementById("signupTab").classList.remove("active");
+
+      if(type === 'login'){
+        document.getElementById("loginForm").classList.add("active");
+        document.getElementById("loginTab").classList.add("active");
+      } else {
+        document.getElementById("signupForm").classList.add("active");
+        document.getElementById("signupTab").classList.add("active");
+      }
+    }
+
+    // Generate Captcha
+    function generateCaptcha(form){
+      let chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+      let code = "";
+      for(let i=0; i<5; i++){
+        code += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      if(form === 'login') document.getElementById("loginCaptchaText").textContent = code;
+      else document.getElementById("signupCaptchaText").textContent = code;
+    }
+
+    // On load
+    window.onload = function(){
+      generateCaptcha('login');
+      generateCaptcha('signup');
+    }
+
+    // Login Validation
+    document.getElementById("loginForm").addEventListener("submit", function(e){
+      e.preventDefault();
+      let user = document.getElementById("loginUser").value.trim();
+      let pass = document.getElementById("loginPass").value.trim();
+      let inputCap = document.getElementById("loginCaptcha").value.trim();
+      let cap = document.getElementById("loginCaptchaText").textContent;
+      let error = document.getElementById("loginError");
+      let role = document.querySelector('input[name="loginRole"]:checked');
+
+      if(user==="" || pass==="" || inputCap===""){
+        error.textContent="⚠ Please fill all fields!";
+      } else if(!role){
+        error.textContent="⚠ Please select a role (Patient or Doctor)!";
+      } else if(inputCap !== cap){
+        error.textContent="⚠ Captcha does not match!";
+      } else {
+        error.textContent="";
+        alert(`✅ Login Successful! Role: ${role.value}`);
+      }
+    });
+
+    // Signup Validation
+    document.getElementById("signupForm").addEventListener("submit", function(e){
+      e.preventDefault();
+      let fullname = document.getElementById("fullname").value.trim();
+      let user = document.getElementById("username").value.trim();
+      let email = document.getElementById("email").value.trim();
+      let pass = document.getElementById("password").value.trim();
+      let confirm = document.getElementById("confirm").value.trim();
+      let inputCap = document.getElementById("signupCaptcha").value.trim();
+      let cap = document.getElementById("signupCaptchaText").textContent;
+      let error = document.getElementById("signupError");
+      let role = document.querySelector('input[name="role"]:checked');
+
+      if(fullname===""||user===""||email===""||pass===""||confirm===""||inputCap===""){
+        error.textContent="⚠ Please fill all fields!";
+      } else if(pass!==confirm){
+        error.textContent="⚠ Passwords do not match!";
+      } else if(!role){
+        error.textContent="⚠ Please select a role (Patient or Doctor)!";
+      } else if(inputCap!==cap){
+        error.textContent="⚠ Captcha does not match!";
+      } else {
+        error.textContent="";
+        alert(`✅ Registration Successful! Role: ${role.value}. You can now login.`);
+        showForm('login');
+      }
+    });
+  </script>
+</body>
+</html>

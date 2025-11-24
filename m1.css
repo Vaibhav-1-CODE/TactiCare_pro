@@ -1,0 +1,73 @@
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  header h1 {
+    font-size: 18px;
+    text-align: center;
+    width: 100%;
+  }
+  nav {
+    flex-direction: column;
+    width: 100%;
+  }
+  nav a {
+    margin: 5px 0;
+    padding: 8px 10px;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 20px 12px 10px;
+  }
+  .hero h2 {
+    font-size: 24px;
+  }
+  .hero p {
+    font-size: 14px;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .search-bar {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .search-bar input,
+  .search-bar button {
+    width: 100%;
+  }
+  .suggestions {
+    left: 0;
+    right: 0;
+    width: 95%;
+    margin: 8px auto 0;
+  }
+}
+
+
+
+
+@media (max-width: 720px) {
+  th:nth-child(3), td:nth-child(3) { display: none; } /* hide Location column */
+  .results-card {
+    overflow-x: auto;
+  }
+  table {
+    min-width: 500px; /* enable horizontal scroll if needed */
+  }
+}
+
+
+@media (max-width: 768px) {
+  footer {
+    font-size: 14px;
+    text-align: center;
+    padding: 15px 12px;
+  }
+}

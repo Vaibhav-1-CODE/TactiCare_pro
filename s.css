@@ -1,0 +1,78 @@
+/* Three dot button (top-left) */
+.three-dots {
+  position: fixed;
+  top: 150px;
+  right: 20px;
+  font-size: 28px;
+  cursor: pointer;
+  color: #0077cc;
+  font-weight: bold;
+}
+
+
+
+
+/* Hidden Reminder Form */
+.reminder-box {
+  display: none;
+  position: fixed;
+  top: 190px;
+  right: 20px;
+  background: #e6e0e0;
+  padding: 20px;
+  border-radius: 19px;
+  box-shadow: 0 4px 12px rgba(202, 205, 10, 0.787);
+  width: 250px;
+  z-index: 999;
+}
+.reminder-box.show {
+  display: block;
+}
+.reminder-box h3 {
+  margin-bottom: 10px;
+  color: #0077cc;
+}
+.reminder-box label {
+  display: block;
+  margin-top: 8px;
+  font-weight: bold;
+}
+.reminder-box input {
+  width: 100%;
+  padding: 6px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+.reminder-box button {
+  margin-top: 12px;
+  width: 100%;
+  padding: 8px;
+  background: #0077cc;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.reminder-box button:hover {
+  background: #005fa3;
+}
+
+/* Reminder Table */
+.reminder-list {
+  margin: 40px auto;
+  width: 80%;
+  text-align: center;
+}
+.reminder-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.reminder-list th, .reminder-list td {
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+.reminder-list th {
+  background: #0077cc;
+  color: white;
+}

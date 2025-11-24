@@ -1,0 +1,79 @@
+
+
+
+
+
+
+
+
+<script>
+    function toggleForm() {
+      document.getElementById("reminderForm").classList.toggle("show");
+    }
+
+    function addReminder() {
+      let medName = document.getElementById("medName").value;
+      let medTime = document.getElementById("medTime").value;
+
+      if(medName === "" || medTime === "") {
+        alert("Please enter both Medicine Name and Time!");
+        return;
+      }
+
+      let table = document.getElementById("reminderTable");
+      let row = table.insertRow();
+      let cell1 = row.insertCell(0);
+      let cell2 = row.insertCell(1);
+
+      cell1.innerHTML = medName;
+      cell2.innerHTML = medTime;
+
+      document.getElementById("medName").value = "";
+      document.getElementById("medTime").value = "";
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <h1>Medicine & Health Portal</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="medicine.html">Search Medicine</a>
+      <a href="firstaid.html">First Aid</a>
+      <a href="store.html">Medicine Store</a>
+      <a href="doctors.html">Doctors</a>
+      
+    </nav>
+  </header>
+
+  <!-- Three Dot Button -->
+  <div class="three-dots" onclick="toggleForm()">&#8942;</div>
+
+  <!-- Hidden Reminder Form -->
+  <div id="reminderForm" class="reminder-box">
+    <h3>Medicine Reminder</h3>
+    <label>Medicine Name:</label>
+    <input type="text" id="medName" placeholder="Enter medicine name">
+
+    <label>Time to Take:</label>
+    <input type="time" id="medTime">
+
+    <button onclick="addReminder()">Set Reminder</button>
+  </div>
+
+  <!-- Table to show saved reminders -->
+  <section class="reminder-list">
+    <h2>Saved Reminders</h2>
+    <table id="reminderTable">
+      <tr>
+        <th>Medicine</th>
+        <th>Time</th>
+      </tr>
+    </table>
+  </section>
+
+  <footer>
+    <p>© 2025 Medicine & Health Portal | College Project</p>
+  </footer>
+</body>
+</html>

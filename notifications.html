@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Doctor Notifications | TactiCare</title>
+<link rel="stylesheet" href="css_style.css">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Role-based access check -->
+<script>
+  const role = localStorage.getItem("tacticareRole");
+  if(role !== "Doctor"){
+      window.location.href = "auth.html"; // redirect if not a doctor
+  }
+</script>
+
+<!-- Header -->
+<header>
+  <div class="logo">💊 TactiCare</div>
+  <nav>
+    <ul>
+      <li><a href="index.html" class="home-btn">Home</a></li>
+      <li><a href="doctor_dashboard.html">Dashboard</a></li>
+      <li><a href="patient_visits.html">Patient Visits</a></li>
+      <li><a href="patient_requests.html">Requests</a></li>
+      <li><a href="add_reports.html">Add Reports</a></li>
+      <li><a href="notifications.html" class="active">Notifications</a></li>
+      <li><a href="profile.html">Profile</a></li>
+      <li><a href="auth.html" class="logout">Logout</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- Main Section -->
+<main>
+  <h2>Notifications</h2>
+  <p>Here are your latest updates and alerts:</p>
+
+  <div class="notifications-container">
+    <!-- Example notification items -->
+    <div class="notification-card">
+      <h4>New Patient Request</h4>
+      <p>Patient <strong>John Doe</strong> requested an appointment for 25 Nov 2025.</p>
+      <span class="time">2 hours ago</span>
+    </div>
+
+    <div class="notification-card">
+      <h4>Report Submitted</h4>
+      <p>Patient <strong>Mary Smith</strong> uploaded a blood test report.</p>
+      <span class="time">5 hours ago</span>
+    </div>
+
+    <div class="notification-card">
+      <h4>New Message</h4>
+      <p>You received a message from <strong>Clinic Admin</strong>.</p>
+      <span class="time">1 day ago</span>
+    </div>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-section about">
+      <h3>💊 TactiCare</h3>
+      <p>Your smart health companion. Helping you stay healthy with medicine reminders, first aid tips, and doctor connections.</p>
+    </div>
+
+    <div class="footer-section links">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="medicine.html">Search Medicine</a></li>
+        <li><a href="firstaid.html">First Aid</a></li>
+        <li><a href="store.html">Medicine Store</a></li>
+        <li><a href="doctors.html">Doctors</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section contact">
+      <h3>Contact Us</h3>
+      <p>📧 Email: <a href="mailto:tacticare@example.com">tacticare@example.com</a></p>
+      <p>📞 Phone: <a href="tel:+911234567890">+91 12345 67890</a></p>
+      <p>📍 Address: Modern College, Pune-5, India</p>
+    </div>
+
+    <div class="footer-section newsletter">
+      <h3>Stay Connected</h3>
+      <div class="social-icons">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2025 TactiCare | All Rights Reserved</p>
+  </div>
+</footer>
+
+</body>
+</html>
